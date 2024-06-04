@@ -32,6 +32,7 @@
   "homepage": "https://github.com/Samuel-Ricardo/ms_bank_user#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
