@@ -9,6 +9,7 @@
     "start": "npm run docs::swagger && node ./build/src/server.js",
     "start:dev": "npm run docs::swagger && ts-node src/server.ts",
     "start:docker": "npm run start",
+    "lint:fix": "eslint ./src/**/*.{ts,js} --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
