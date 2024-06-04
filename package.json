@@ -1,0 +1,19 @@
+{
+  "name": "ms_bank_user",
+  "version": "1.0.0",
+  "description": "microsservice to handle bank users and authentication",
+  "main": "server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Samuel-Ricardo/ms_bank_user.git"
+  },
+  "author": "Samuel Ricardo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Samuel-Ricardo/ms_bank_user/issues"
+  },
+  "homepage": "https://github.com/Samuel-Ricardo/ms_bank_user#readme"
+}
