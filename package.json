@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Samuel-Ricardo/ms_bank_user/issues"
   },
-  "homepage": "https://github.com/Samuel-Ricardo/ms_bank_user#readme"
+  "homepage": "https://github.com/Samuel-Ricardo/ms_bank_user#readme",
+  "dependencies": {
+    "typescript": "^5.4.5"
+  }
 }
