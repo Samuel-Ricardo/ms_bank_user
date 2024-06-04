@@ -1,2 +1,3 @@
 # ms_bank_user
-microsservice to handle bank users and authentication 
+
+microsservice to handle bank users and authentication

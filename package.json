@@ -4,6 +4,7 @@
   "description": "microsservice to handle bank users and authentication",
   "main": "server.ts",
   "scripts": {
+    "docs::swagger": "node ./swagger.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
