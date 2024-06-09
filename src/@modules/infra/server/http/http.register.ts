@@ -1,0 +1,9 @@
+export const HTTP_SERVER_REGISTER = {
+  EXPRESS: {
+    APP: Symbol('MODULE::INFRA::SERVER::HTTP::EXPRESS::SERVER'),
+    PARSER: {
+      BODY: Symbol('MODULE::INFRA::SERVER::HTTP::EXPRESS::PARSER::BODY'),
+    },
+    CORS: Symbol('MODULE::INFRA::SERVER::HTTP::EXPRESS::CORS'),
+  },
+};
