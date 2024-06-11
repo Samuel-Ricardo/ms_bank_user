@@ -6,7 +6,7 @@ const _MODULE = new Container({
   defaultScope: 'Singleton',
 });
 
-export const SERVER_MODULE = Container.merge(
+export const SERVER_ENGINE_MODULE = Container.merge(
   _MODULE,
   HTTP_SERVER_ENGINE_MODULE,
 );
