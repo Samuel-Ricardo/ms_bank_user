@@ -1,3 +1,3 @@
-export const HTTP_SERVER_REGISTER = {
+export const HTTP_SERVER_REGISTRY = {
   EXPRESS: Symbol.for('MODULE::INFRA::SERVER::HTTP::EXPRESS'),
 };

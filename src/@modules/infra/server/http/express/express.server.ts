@@ -9,7 +9,7 @@ import { EXPRESS_BODY_PARSER_TYPE } from '../../../../../@types/infra/engine/ser
 import { EXPRESS_CORS_TYPE } from '../../../../../@types/infra/engine/server/http/express/cors.type';
 
 @injectable()
-export class ExpressServer implements IHTTPServer<Express> {
+export class HTTPExpressServer implements IHTTPServer<Express> {
   constructor(
     @inject(MODULE.INFRA.ENGINE.SERVER.HTTP.EXPRESS.APP)
     private readonly engine: Express,
