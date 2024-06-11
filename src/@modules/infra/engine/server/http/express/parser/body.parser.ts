@@ -1,3 +1,3 @@
 import { json } from 'express';
 
-export const BODY_PARSER = json();
+export const EXPRESS_BODY_PARSER = json();
