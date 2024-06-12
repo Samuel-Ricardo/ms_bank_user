@@ -1,5 +1,4 @@
 import { IHTTPServer } from '../../../domain/server/http/http.server';
-import { HTTPExpressServer } from './express/express.server';
 import { HTTP_SERVER_MODULE } from './http.module';
 import { HTTP_SERVER_REGISTRY } from './http.register';
 
