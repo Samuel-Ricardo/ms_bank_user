@@ -17,10 +17,15 @@ export class HTTPExpressServer implements IHTTPServer<Express> {
     private readonly parser: EXPRESS_BODY_PARSER_TYPE,
     @inject(MODULE.INFRA.ENGINE.SERVER.HTTP.EXPRESS.CORS)
     private readonly cors: EXPRESS_CORS_TYPE,
+    @inject(MODULE.INFRA.CONFIG.PORT)
+    private readonly PORT: number,
   ) {}
 
   async start(DTO?: IStartHTTPServerDTO) {
-    this.engine.listen(DTO?.port, () => {});
+    const PORT = DTO?.port || this.PORT;
+    this.engine.listen(PORT, () =>
+      console.log(`Express server listening on port ${PORT}`),
+    );
   }
   async setup() {
     this.engine.use(this.cors);
