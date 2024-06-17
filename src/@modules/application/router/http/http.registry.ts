@@ -1,3 +1,3 @@
-export const EXPRESS_HTTP_ROUTER_REGISTRY = {
+export const HTTP_ROUTER_REGISTRY = {
   APP: Symbol.for('MODULE::INFRA::ROUTER::HTTP::EXPRESS::APP'),
 };
