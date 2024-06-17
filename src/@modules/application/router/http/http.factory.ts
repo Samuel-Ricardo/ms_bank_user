@@ -5,5 +5,7 @@ import { HTTP_ROUTER_REGISTRY } from './http.registry';
 
 export const HTTP_ROUTER_FACTORY = {
   APP: () =>
-    HTTP_ROUTER_MODULE.get<IHttpRouter<Router>>(HTTP_ROUTER_REGISTRY.APP),
+    HTTP_ROUTER_MODULE.get<IHttpRouter<Router>>(
+      HTTP_ROUTER_REGISTRY.EXPRESS.APP,
+    ),
 };

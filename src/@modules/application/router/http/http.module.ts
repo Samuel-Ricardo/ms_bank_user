@@ -10,4 +10,4 @@ const _MODULE = new Container({
 
 export const HTTP_ROUTER_MODULE = Container.merge(_MODULE, ENGINE_MODULE);
 
-HTTP_ROUTER_MODULE.bind(HTTP_ROUTER_REGISTRY.APP).to(ExpressAppRouter);
+HTTP_ROUTER_MODULE.bind(HTTP_ROUTER_REGISTRY.EXPRESS.APP).to(ExpressAppRouter);
