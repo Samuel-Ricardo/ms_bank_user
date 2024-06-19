@@ -4,9 +4,10 @@ import { IStartHTTPServerDTO } from '../../../../domain/DTO/server/http/start.dt
 import { IHTTPServer } from '../../../../domain/server/http/http.server';
 import { MODULE } from '../../../../app.registry';
 
-import { Express } from 'express';
+import { Express, Router } from 'express';
 import { EXPRESS_BODY_PARSER_TYPE } from '../../../../../@types/infra/engine/server/http/express/parser/body.type';
 import { EXPRESS_CORS_TYPE } from '../../../../../@types/infra/engine/server/http/express/cors.type';
+import { IHttpRouter } from '../../../../domain/router/http/http.router';
 
 @injectable()
 export class HTTPExpressServer implements IHTTPServer<Express> {
@@ -19,6 +20,8 @@ export class HTTPExpressServer implements IHTTPServer<Express> {
     private readonly cors: EXPRESS_CORS_TYPE,
     @inject(MODULE.INFRA.CONFIG.PORT)
     private readonly PORT: number,
+    @inject(MODULE.APPLICATION.ROUTER.HTTP.EXPRESS.APP)
+    private readonly appRouter: IHttpRouter<Router>,
   ) {}
 
   async start(DTO?: IStartHTTPServerDTO) {
@@ -30,9 +33,15 @@ export class HTTPExpressServer implements IHTTPServer<Express> {
   async setup() {
     this.engine.use(this.cors);
     this.engine.use(this.parser);
+
+    this.setupRoutes();
   }
 
   instance(): Express {
     return this.engine;
+  }
+
+  private setupRoutes() {
+    this.engine.use(this.appRouter.setup());
   }
 }
