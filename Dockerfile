@@ -9,7 +9,7 @@ COPY --chown=node:node package*.json ./
 RUN npm ci
 
 COPY --chown=node:node . .
-RUN npm run build
+RUN npm run build:docker
 
 #CMD ["npm", "run", "start:dev"]
 #CMD [ "tails", "-f", "/dev/null" ]

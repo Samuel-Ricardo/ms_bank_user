@@ -6,6 +6,7 @@
   "scripts": {
     "docs::swagger": "node ./swagger.js",
     "build": "tsc --build",
+    "build:docker": "npm run test && npm run build",
     "start": "npm run docs::swagger && node ./build/src/server.js",
     "start:dev": "npm run docs::swagger && ts-node src/server.ts",
     "start:docker": "npm run start",
