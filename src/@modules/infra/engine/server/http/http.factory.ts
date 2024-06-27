@@ -3,7 +3,7 @@ import { EXPRESS_BODY_PARSER_TYPE } from '../../../../../@types/infra/engine/ser
 import { HTTP_SERVER_ENGINE_MODULE } from './http.module';
 import { HTTP_SERVER_ENGINE_REGISTRY } from './http.registry';
 
-import { Express } from 'express';
+import { Express, Router } from 'express';
 
 export const HTTP_SERVER_ENGINE_FACTORY = {
   EXPRESS: {
@@ -14,6 +14,10 @@ export const HTTP_SERVER_ENGINE_FACTORY = {
     CORS: () =>
       HTTP_SERVER_ENGINE_MODULE.get<EXPRESS_CORS_TYPE>(
         HTTP_SERVER_ENGINE_REGISTRY.EXPRESS.CORS,
+      ),
+    ROUTER: () =>
+      HTTP_SERVER_ENGINE_MODULE.get<Router>(
+        HTTP_SERVER_ENGINE_REGISTRY.EXPRESS.ROUTER,
       ),
     PARSER: {
       BODY: () =>
