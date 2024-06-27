@@ -3,4 +3,5 @@ export interface IError {
   message: string;
   status: 400 | number;
   data?: any;
+  url?: string;
 }

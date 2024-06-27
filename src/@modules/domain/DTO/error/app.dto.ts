@@ -4,4 +4,5 @@ export interface IErrorDTO {
   status: number;
   data?: any;
   error: boolean;
+  url?: string;
 }
