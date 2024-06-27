@@ -1,0 +1,5 @@
+import { EXPRESS_HTTP_MIDDLEWARE_FACTORY } from './express/express.factory';
+
+export const HTTP_MIDDLEWARE_FACTORY = {
+  EXPRESS: EXPRESS_HTTP_MIDDLEWARE_FACTORY,
+};
