@@ -4,7 +4,7 @@ import { IStartHTTPServerDTO } from '../../../../domain/DTO/server/http/start.dt
 import { IHTTPServer } from '../../../../domain/server/http/http.server';
 import { MODULE } from '../../../../app.registry';
 
-import { ErrorRequestHandler, Express, Router } from 'express';
+import { ErrorRequestHandler, Express, RequestHandler, Router } from 'express';
 import { EXPRESS_BODY_PARSER_TYPE } from '../../../../../@types/infra/engine/server/http/express/parser/body.type';
 import { EXPRESS_CORS_TYPE } from '../../../../../@types/infra/engine/server/http/express/cors.type';
 import { IHttpRouter } from '../../../../domain/router/http/http.router';
@@ -24,6 +24,10 @@ export class HTTPExpressServer implements IHTTPServer<Express> {
     private readonly appRouter: IHttpRouter<Router>,
     @inject(MODULE.APPLICATION.MIDDLEWARE.HTTP.EXPRESS.ERROR)
     private readonly errorMiddleware: ErrorRequestHandler,
+    @inject(MODULE.APPLICATION.MIDDLEWARE.HTTP.EXPRESS.LOGGER.REQUEST)
+    private readonly loggerMiddleware: RequestHandler,
+    @inject(MODULE.APPLICATION.MIDDLEWARE.HTTP.EXPRESS.LOGGER.ERROR)
+    private readonly errorLoggerMiddleware: ErrorRequestHandler,
   ) {}
 
   async start(DTO?: IStartHTTPServerDTO) {
@@ -46,7 +50,7 @@ export class HTTPExpressServer implements IHTTPServer<Express> {
   }
 
   private setupStartMiddlewares() {
-    return undefined;
+    this.engine.use(this.loggerMiddleware);
   }
 
   private setupRoutes() {
@@ -54,6 +58,7 @@ export class HTTPExpressServer implements IHTTPServer<Express> {
   }
 
   private setupEndMiddleware() {
+    this.engine.use(this.errorLoggerMiddleware);
     this.engine.use(this.errorMiddleware);
   }
 }
