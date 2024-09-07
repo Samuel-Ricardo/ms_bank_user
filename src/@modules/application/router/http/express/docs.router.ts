@@ -12,7 +12,7 @@ export class ExpressDocsRouter implements IHttpRouter<Router> {
 
   constructor(
     @inject(MODULE.INFRA.DOCS.SWAGGER)
-    private readonly docs: IDocumentation<RequestHandler, RequestHandler>,
+    private readonly docs: IDocumentation<RequestHandler[], RequestHandler>,
   ) {}
 
   setup(): Router {
@@ -21,6 +21,6 @@ export class ExpressDocsRouter implements IHttpRouter<Router> {
   }
 
   private setupDocs() {
-    this.router.get('/api/docs', this.docs.server(), this.docs.setup());
+    this.router.use('/api/docs', this.docs.server(), this.docs.setup());
   }
 }
