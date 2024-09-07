@@ -1,3 +1,3 @@
-export const DOCS_REGISTRY = {
+export const DOCUMENTATION_REGISTRY = {
   SWAGGER: Symbol.for('MODULE::INFRA::DOCS::SWAGGER'),
 };
