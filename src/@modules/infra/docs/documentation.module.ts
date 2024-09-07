@@ -8,7 +8,7 @@ export const DOCUMENTATION_MODULE = new Container({
   defaultScope: 'Singleton',
 });
 
-DOCUMENTATION_MODULE.bind(DOCUMENTATION_REGISTRY.SWAGGER).toConstantValue(
+DOCUMENTATION_MODULE.bind(DOCUMENTATION_REGISTRY.SWAGGER).to(
   SwaggerDocumentation,
 );
 

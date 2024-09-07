@@ -5,7 +5,7 @@ import { DOCUMENTATION_REGISTRY } from './documentation.registry';
 
 export const DOCUMENTATION_FACTORY = {
   SWAGGER: () =>
-    DOCUMENTATION_MODULE.get<IDocumentation<RequestHandler, RequestHandler>>(
+    DOCUMENTATION_MODULE.get<IDocumentation<RequestHandler[], RequestHandler>>(
       DOCUMENTATION_REGISTRY.SWAGGER,
     ),
 };
