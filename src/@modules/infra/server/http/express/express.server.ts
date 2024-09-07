@@ -22,6 +22,8 @@ export class HTTPExpressServer implements IHTTPServer<Express> {
     private readonly PORT: number,
     @inject(MODULE.APPLICATION.ROUTER.HTTP.EXPRESS.APP)
     private readonly appRouter: IHttpRouter<Router>,
+    @inject(MODULE.APPLICATION.ROUTER.HTTP.EXPRESS.DOCS)
+    private readonly docsRouter: IHttpRouter<Router>,
     @inject(MODULE.APPLICATION.MIDDLEWARE.HTTP.EXPRESS.ERROR)
     private readonly errorMiddleware: ErrorRequestHandler,
     @inject(MODULE.APPLICATION.MIDDLEWARE.HTTP.EXPRESS.LOGGER.REQUEST)
@@ -55,6 +57,7 @@ export class HTTPExpressServer implements IHTTPServer<Express> {
 
   private setupRoutes() {
     this.engine.use(this.appRouter.setup());
+    this.engine.use(this.docsRouter.setup());
   }
 
   private setupEndMiddleware() {
