@@ -26,6 +26,8 @@ COPY --chown=node:node --from=build /home/node/app/package*.json ./
 COPY --chown=node:node --from=build /home/node/app/build ./build
 COPY --chown=node:node --from=build /home/node/app/ ./ 
 
+EXPOSE 3000 
+
 CMD [ "npm", "run", "start:docker" ]
 
 

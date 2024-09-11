@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-pod
+spec:
+  containers:
+    - name: app
+      image: ms_bank_user:latest
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: 3000
+      envFrom:
+        - configMapRef:
+            name: app-config
+      volumeMounts:
+        - name: app-volume
+          mountPath: /home/node/app
+
+    - name: postgres
+      image: postgres:latest
+      ports:
+        - containerPort: 5432
+      env:
+        - name: POSTGRES_USER
+          value: root
+        - name: POSTGRES_PASSWORD
+          value: root
+        - name: POSTGRES_DB
+          value: bank_one
+      volumeMounts:
+        - name: postgres-volume
+          mountPath: /var/lib/postgresql/data
+
+  volumes:
+    - name: app-volume
+      emptyDir: {}
+
+    - name: postgres-volume
+      emptyDir: {}
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  # Se houver um arquivo .env, converta-o para este formato
+  ENV_VAR_KEY: 'env_var_value'
