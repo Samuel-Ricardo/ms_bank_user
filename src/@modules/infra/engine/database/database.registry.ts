@@ -1,0 +1,3 @@
+export const DATABASE_ENGINE_REGISTRY = {
+  PRISMA: Symbol.for('MODULE::INFRA::ENGINE::DATABASE::PRISMA'),
+};

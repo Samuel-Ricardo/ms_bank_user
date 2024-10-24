@@ -1,12 +1,14 @@
 FROM node:20-slim as build
 
-#RUN apt-get update -y && apt-get install -y openssl
+RUN apt-get update -y && apt-get install -y openssl
 
 USER node
 WORKDIR /home/node/app
 
 COPY --chown=node:node package*.json ./
 RUN npm ci
+
+RUN npm i prisma @prisma/client
 
 COPY --chown=node:node . .
 RUN npm run build:docker
@@ -16,7 +18,7 @@ RUN npm run build:docker
 
 FROM node:20-slim as production
 
-#RUN apt-get update -y && apt-get install -y openssl
+RUN apt-get update -y && apt-get install -y openssl
 
 USER node
 WORKDIR /home/node/app
