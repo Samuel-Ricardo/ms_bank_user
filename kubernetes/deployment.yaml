@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+spec:
+  replicas: 1 # Número de réplicas desejado
+  selector:
+    matchLabels:
+      app: my-app # Label que será usada para selecionar os pods
+  template:
+    metadata:
+      labels:
+        app: my-app # Label correspondente ao selector
+    spec:
+      containers:
+        - name: app
+          image: ms_bank_user:latest # Use o mesmo nome e tag que foi carregado no Kind
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: app-config
+          # Remova o volumeMount se não estiver usando volume para o app
+          # volumeMounts:
+          #   - name: app-volume
+          #     mountPath: /home/node/app
+
+        - name: postgres
+          image: postgres:latest
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: root
+            - name: POSTGRES_PASSWORD
+              value: root
+            - name: POSTGRES_DB
+              value: bank_one
+          volumeMounts:
+            - name: postgres-volume
+              mountPath: /var/lib/postgresql/data
+
+      volumes:
+        # Remova o volume vazio se não precisar dele
+        # - name: app-volume
+        #   emptyDir: {}
+
+        - name: postgres-volume
+          emptyDir: {}
