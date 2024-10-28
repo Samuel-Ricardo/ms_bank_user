@@ -18,7 +18,7 @@ services:
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: bank_auth_db
+      POSTGRES_DB: bank_clients_db
     volumes:
       - ./.docker/data/db:/var/lib/postgresql/data
 
