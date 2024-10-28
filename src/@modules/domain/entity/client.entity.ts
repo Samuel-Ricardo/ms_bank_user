@@ -11,4 +11,15 @@ export class Client {
     private readonly _created_at?: Date,
     private readonly _updated_at?: Date,
   ) {}
+
+  toDTO(): IClientDTO {
+    return {
+      id: this._id,
+      bacenId: this._bacenId,
+      account_number: this._account_number,
+      cpf: this._cpf,
+      created_at: this._created_at,
+      updated_at: this._updated_at,
+    };
+  }
 }
