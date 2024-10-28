@@ -22,4 +22,15 @@ export class Client {
       updated_at: this._updated_at,
     };
   }
+
+  static fromDTO(DTO: IClientDTO) {
+    return new Client(
+      DTO.id!,
+      DTO.bacenId!,
+      DTO.account_number,
+      DTO.cpf,
+      DTO.created_at,
+      DTO.updated_at,
+    );
+  }
 }
