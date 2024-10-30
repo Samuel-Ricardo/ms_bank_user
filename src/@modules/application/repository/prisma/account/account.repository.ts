@@ -11,9 +11,11 @@ export class AccountPrismaRepository
   extends PrismaEngineSupport
   implements IAccountRepository
 {
-  createAccount(DTO: ICreateAccountDTO): Promise<void> {
-    throw new Error('Method not implemented.');
+  async createAccount(DTO: ICreateAccountDTO) {
+    const result = await this.engine.account.create({ data: { ...DTO } });
+    return { id: result.id };
   }
+
   deleteAccount(DTO: IDeleteAccountDTO): Promise<void> {
     throw new Error('Method not implemented.');
   }
