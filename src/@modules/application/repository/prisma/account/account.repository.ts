@@ -16,8 +16,9 @@ export class AccountPrismaRepository
     return { id: result.id };
   }
 
-  deleteAccount(DTO: IDeleteAccountDTO): Promise<void> {
-    throw new Error('Method not implemented.');
+  async deleteAccount(DTO: IDeleteAccountDTO) {
+    const result = await this.engine.account.delete({ where: { id: DTO.id } });
+    return { id: result.id };
   }
   findCurrentAccount(DTO: IFindCurrentAccountDTO): Promise<Account> {
     throw new Error('Method not implemented.');
