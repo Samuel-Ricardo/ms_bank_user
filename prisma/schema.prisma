@@ -14,11 +14,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Account {
   id             String   @id @default(uuid()) @db.Uuid
   bacenId        String   @unique
   account_number String   @unique
+  full_name      String
+  email          String   @unique
   cpf            String   @unique
+  zip_code       String
+  birth_date     DateTime
   creadted_at    DateTime @default(now())
   updated_at     DateTime @default(now())
 }
