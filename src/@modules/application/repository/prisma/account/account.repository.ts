@@ -16,11 +16,13 @@ export class AccountPrismaRepository
     return { id: result.id };
   }
 
-  async deleteAccount(DTO: IDeleteAccountDTO) {
-    const result = await this.engine.account.delete({ where: { id: DTO.id } });
+  async deleteAccount({ id, cpf }: IDeleteAccountDTO) {
+    const result = await this.engine.account.delete({ where: { id, cpf } });
     return { id: result.id };
   }
-  findCurrentAccount(DTO: IFindCurrentAccountDTO): Promise<Account> {
-    throw new Error('Method not implemented.');
+
+  async findCurrentAccount({ cpf }: IFindCurrentAccountDTO) {
+    const result = await this.engine.account.findFirst({ where: { cpf } });
+    return result ? Account.fromDTO(result) : undefined;
   }
 }
