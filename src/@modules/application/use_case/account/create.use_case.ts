@@ -4,7 +4,7 @@ import { ICreateAccountDTO } from '../../../domain/DTO/client/create.dto';
 import { AccountPrismaRepositorySupport } from '../../support/repository/prisma/account.support';
 
 @injectable()
-export class CreateAccountInDatabaseUseCase
+export class CreateAccountInRepositoryUseCase
   extends AccountPrismaRepositorySupport
   implements ICreateAccountUseCase
 {
