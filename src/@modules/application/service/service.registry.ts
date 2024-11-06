@@ -1,0 +1,3 @@
+export const SERVICE_REGISTRY = {
+  ACCOUNT: Symbol.for('MODULE::APPLICATION::SERVICE::ACCOUNT'),
+};
