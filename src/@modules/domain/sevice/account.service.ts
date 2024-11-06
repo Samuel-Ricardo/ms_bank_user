@@ -7,8 +7,8 @@ import { IUpdateAccountAddressDTO } from '../DTO/client/update/address.dto';
 import { Account } from '../entity/account.entity';
 
 export interface IAccountService {
-  create(DTO: ICreateAccountDTO): Promise<ICreateAccountOutputDTO>;
-  delete(DTO: IDeleteAccountDTO): Promise<IDeleteAccountOutputDTO>;
-  findCurrent(DTO: IFindCurrentAccountDTO): Promise<Account>;
-  updatePersonalInformation(DTO: IUpdateAccountAddressDTO): Promise<void>;
+  create(DTO: ICreateAccountDTO): Promise<void>;
+  delete(DTO: IDeleteAccountDTO): Promise<void>;
+  findCurrent(DTO: IFindCurrentAccountDTO): Promise<Account | undefined | null>;
+  //  updatePersonalInformation(DTO: IUpdateAccountAddressDTO): Promise<void>;
 }

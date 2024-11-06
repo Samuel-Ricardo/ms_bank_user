@@ -4,13 +4,9 @@ import { IAccountService } from '../../../domain/sevice/account.service';
 import { MODULE } from '../../../app.registry';
 import { IDeleteAccountUseCase } from '../../../domain/use_case/account/delete.use_case';
 import { IFindCurrentAccountUseCase } from '../../../domain/use_case/account/find/current.use_case';
-import { ICreateAccountOutputDTO } from '../../../domain/DTO/Output/account/create.dto';
-import { IDeleteAccountOutputDTO } from '../../../domain/DTO/Output/account/delete.dto';
 import { ICreateAccountDTO } from '../../../domain/DTO/client/create.dto';
 import { IDeleteAccountDTO } from '../../../domain/DTO/client/delete.dto';
 import { IFindCurrentAccountDTO } from '../../../domain/DTO/client/find/current.dto';
-import { IUpdateAccountAddressDTO } from '../../../domain/DTO/client/update/address.dto';
-import { Account } from '../../../domain/entity/account.entity';
 
 @injectable()
 export class AccountService implements IAccountService {
@@ -23,16 +19,15 @@ export class AccountService implements IAccountService {
     private readonly findCurrentAccount: IFindCurrentAccountUseCase,
   ) {}
 
-  create(DTO: ICreateAccountDTO): Promise<ICreateAccountOutputDTO> {
-    throw new Error('Method not implemented.');
+  async create(DTO: ICreateAccountDTO) {
+    return await this.createAccount.execute(DTO);
   }
-  delete(DTO: IDeleteAccountDTO): Promise<IDeleteAccountOutputDTO> {
-    throw new Error('Method not implemented.');
+
+  async delete(DTO: IDeleteAccountDTO) {
+    return await this.deleteAccount.execute(DTO);
   }
-  findCurrent(DTO: IFindCurrentAccountDTO): Promise<Account> {
-    throw new Error('Method not implemented.');
-  }
-  updatePersonalInformation(DTO: IUpdateAccountAddressDTO): Promise<void> {
-    throw new Error('Method not implemented.');
+
+  async findCurrent(DTO: IFindCurrentAccountDTO) {
+    return await this.findCurrentAccount.execute(DTO);
   }
 }
