@@ -18,6 +18,30 @@
     "application/json"
   ],
   "paths": {
+    "${this._basePath}/{cpf}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "this._basePath",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cpf",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/": {
       "get": {
         "description": "",
