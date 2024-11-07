@@ -8,6 +8,7 @@ export const log = (
   },
   ...data: any[]
 ) => console.log(`[${context}] | ${message}`, ...data);
+
 export const logger = {
   error: (
     {
@@ -20,13 +21,26 @@ export const logger = {
       error?: Error | null | undefined;
     },
     ...data: any[]
-  ) => console.error(`[${context}] | ${message} `, error, ...data),
+  ) =>
+    console.error(
+      `[ ${new Date().toISOString()} ] - [${context}] | ${message} `,
+      error,
+      ...data,
+    ),
   info: (
     { context, message }: { context: string; message: string },
     ...data: any[]
-  ) => console.info(`[${context}] | ${message}`, ...data),
+  ) =>
+    console.info(
+      `[ ${new Date().toISOString()} ] - [${context}] | ${message}`,
+      ...data,
+    ),
   warn: (
     { context, message }: { context: string; message: string },
     ...data: any[]
-  ) => console.warn(`[${context}] | ${message}`, ...data),
+  ) =>
+    console.warn(
+      `[ ${new Date().toISOString()} ] - [${context}] | ${message}`,
+      ...data,
+    ),
 };

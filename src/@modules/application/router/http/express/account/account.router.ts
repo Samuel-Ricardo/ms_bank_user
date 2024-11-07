@@ -3,8 +3,9 @@ import { MODULE } from '../../../../../app.registry';
 import { IHttpRouter } from '../../../../../domain/router/http/http.router';
 import { injectEngine } from '../../../../../infra/engine/engine.module';
 import { AccountController } from '../../../../controller/account/account.controller';
-import { inject } from 'inversify';
+import { inject, injectable } from 'inversify';
 
+@injectable()
 export class ExpressAccountRouter implements IHttpRouter<Router> {
   @injectEngine(MODULE.INFRA.ENGINE.SERVER.HTTP.EXPRESS.ROUTER)
   private readonly _router!: Router;

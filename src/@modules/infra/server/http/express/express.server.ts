@@ -8,6 +8,7 @@ import { ErrorRequestHandler, Express, RequestHandler, Router } from 'express';
 import { EXPRESS_BODY_PARSER_TYPE } from '../../../../../@types/infra/engine/server/http/express/parser/body.type';
 import { EXPRESS_CORS_TYPE } from '../../../../../@types/infra/engine/server/http/express/cors.type';
 import { IHttpRouter } from '../../../../domain/router/http/http.router';
+import { logger } from '../../../../../@lib/log/logger.lib';
 
 @injectable()
 export class HTTPExpressServer implements IHTTPServer<Express> {
@@ -24,6 +25,8 @@ export class HTTPExpressServer implements IHTTPServer<Express> {
     private readonly appRouter: IHttpRouter<Router>,
     @inject(MODULE.APPLICATION.ROUTER.HTTP.EXPRESS.DOCS)
     private readonly docsRouter: IHttpRouter<Router>,
+    @inject(MODULE.APPLICATION.ROUTER.HTTP.EXPRESS.ACCOUNT)
+    private readonly accountRouter: IHttpRouter<Router>,
     @inject(MODULE.APPLICATION.MIDDLEWARE.HTTP.EXPRESS.ERROR)
     private readonly errorMiddleware: ErrorRequestHandler,
     @inject(MODULE.APPLICATION.MIDDLEWARE.HTTP.EXPRESS.LOGGER.REQUEST)
@@ -35,10 +38,20 @@ export class HTTPExpressServer implements IHTTPServer<Express> {
   async start(DTO?: IStartHTTPServerDTO) {
     const PORT = DTO?.port || this.PORT;
     this.engine.listen(PORT, () =>
-      console.log(`Express server listening on port ${PORT}`),
+      logger.info(
+        {
+          context: 'EXPRESS_SERVER',
+          message: `Express server started on port:`,
+        },
+        PORT,
+      ),
     );
   }
   async setup() {
+    logger.info({
+      context: 'EXPRESS_SERVER',
+      message: 'Setting up express server',
+    });
     this.engine.use(this.cors);
     this.engine.use(this.parser);
 
@@ -52,15 +65,39 @@ export class HTTPExpressServer implements IHTTPServer<Express> {
   }
 
   private setupStartMiddlewares() {
+    logger.info({
+      context: 'EXPRESS_SERVER',
+      message: 'Setting up express server wall middlewares',
+    });
     this.engine.use(this.loggerMiddleware);
   }
 
   private setupRoutes() {
+    logger.info({
+      context: 'EXPRESS_SERVER',
+      message: 'Setting up express server routes - [APP]',
+    });
     this.engine.use(this.appRouter.setup());
+
+    logger.info({
+      context: 'EXPRESS_SERVER',
+      message: 'Setting up express server routes - [DOCS]',
+    });
     this.engine.use(this.docsRouter.setup());
+
+    logger.info({
+      context: 'EXPRESS_SERVER',
+      message: 'Setting up express server routes - [ACCOUNT]',
+    });
+    this.engine.use(this.accountRouter.setup());
   }
 
   private setupEndMiddleware() {
+    logger.info({
+      context: 'EXPRESS_SERVER',
+      message: 'Setting up express server background middlewares',
+    });
+
     this.engine.use(this.errorLoggerMiddleware);
     this.engine.use(this.errorMiddleware);
   }
