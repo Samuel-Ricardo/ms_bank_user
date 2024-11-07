@@ -1,3 +1,4 @@
+import { CONTROLLER_REGISTRY } from './controller/controller.registry';
 import { MIDDLEWARE_REGISTRY } from './middleware/middleware.registry';
 import { REPOSITORY_REGISTRY } from './repository/repository.registry';
 import { ROUTER_REGISTRY } from './router/router.registry';
@@ -10,4 +11,5 @@ export const APPLICATION_REGISTRY = {
   REPOSITORY: REPOSITORY_REGISTRY,
   USE_CASE: USE_CASE_REGISTRY,
   SERVICE: SERVICE_REGISTRY,
+  CONTROLLER: CONTROLLER_REGISTRY,
 };
