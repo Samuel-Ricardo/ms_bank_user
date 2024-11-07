@@ -21,6 +21,6 @@ export class AccountController {
   }
 
   async findCurrentAccount(DTO: IFindCurrentAccountDTO) {
-    return { data: await this.service.findCurrent(DTO) };
+    return { data: (await this.service.findCurrent(DTO))?.toDTO() };
   }
 }
