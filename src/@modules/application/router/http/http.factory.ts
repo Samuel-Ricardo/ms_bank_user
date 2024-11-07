@@ -12,4 +12,8 @@ export const HTTP_ROUTER_FACTORY = {
     HTTP_ROUTER_MODULE.get<IHttpRouter<Router>>(
       HTTP_ROUTER_REGISTRY.EXPRESS.DOCS,
     ),
+  ACCOUNT: () =>
+    HTTP_ROUTER_MODULE.get<IHttpRouter<Router>>(
+      HTTP_ROUTER_REGISTRY.EXPRESS.ACCOUNT,
+    ),
 };
